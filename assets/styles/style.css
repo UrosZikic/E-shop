@@ -45,6 +45,7 @@ nav {
 }
 .header_component img {
   position: absolute;
+  object-fit: cover;
   top: 0;
   bottom: 0;
   width: 100%;

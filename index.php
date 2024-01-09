@@ -6,7 +6,7 @@ include "navbar.php";
 ?>
 <main>
   <div class="header_component">
-    <img src="assets/images/bg-image.webp" alt="scented candles">
+    <img src="assets/images/bg-image.webp" alt="scented candles" class="head_image">
     <div class="h_component_inner">
       <div>
         <p>🌱</p>

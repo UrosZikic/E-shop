@@ -1,10 +1,28 @@
-/* @media only screen and (min-width: 1441px) {
-  .header_component {
-    background-size: 100% 100%;
+@media only screen and (max-width: 610px) {
+  .h_component_inner p {
+    padding: 0 !important;
+    font-size: 1.6rem;
+  }
+  .h_component_inner h1 {
+    font-size: 3.2rem;
+  }
+  .h_component_inner a {
+    font-size: 1.6rem;
   }
 }
-@media only screen and (max-width: 1440px) {
-  .header_component {
-    background-size: contain;
+
+@media only screen and (max-width: 991px) {
+  .responsive-dismiss {
+    display: none !important;
   }
-} */
+  .link-margin {
+    margin: 0 !important;
+  }
+  .navbar-nav {
+    margin: 1rem 5rem;
+  }
+  .navbar-nav a {
+    font-size: 1.8rem;
+    font-weight: 400 !important;
+  }
+}

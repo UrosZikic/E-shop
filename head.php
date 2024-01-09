@@ -17,7 +17,6 @@
     rel="stylesheet">
   <link rel="stylesheet" href="assets/styles/style.css">
   <link rel="stylesheet" href="assets/styles/responsive.css">
-
 </head>
 
-<body>
+<body onresize="responsive_head_image()" onload="responsive_head_image()">
