@@ -13,9 +13,10 @@ include "navbar.php";
         <h1>The nature candle</h1>
         <p>All handmade with natural soy wax, Candleleaf is a companion for all your pleasure moments</p>
       </div>
-      <a href="#">Discover out collection</a>
+      <a href="#products">Discover out collection</a>
     </div>
 </main>
+<?php include "product.php"; ?>
 
 <?php
 include "foot.php";

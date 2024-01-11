@@ -15,6 +15,10 @@ html {
 }
 nav {
   padding: 2rem 0rem !important;
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 .inner-nav {
@@ -84,4 +88,59 @@ nav {
 }
 .h_component_inner p {
   padding: 0rem 8rem;
+}
+
+/* products */
+.products {
+  width: 100%;
+  max-width: 130rem;
+  margin: 5rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  position: relative;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+}
+.product-image span {
+  position: absolute;
+  top: 1rem;
+  text-transform: uppercase;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+}
+.product-image span:first-child {
+  left: 1rem;
+}
+.product-image span:nth-child(2) {
+  right: 1rem;
+}
+.product-image img {
+  width: 100%;
+  transition: transform 0.15s;
+}
+.product-image img:hover {
+  object-fit: cover;
+  transform: scale(1.2);
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.product-info p {
+  font-size: 1.7rem;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
 }
