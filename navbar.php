@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="collapse flex-grow-0 normal-dismiss" id="navbarNav">
+    <div class="collapse flex-grow-0 normal-dismiss responsive-styles-nav" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Discovery</a>
