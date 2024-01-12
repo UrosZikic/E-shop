@@ -10,9 +10,7 @@ $resultProducts = $conn->query($queryProducts);
       ?>
       <div class="product">
         <div class="product-image">
-          <span>
-            <?php echo 'qnt ' . $row['quantity'] ?>
-          </span>
+
           <span style="color:<?php echo $row['quantity'] > 0 ? "green" : "red"; ?>">
             <?php
             echo $row['quantity'] > 0 ? "in stock" : "out of stock";
@@ -20,13 +18,16 @@ $resultProducts = $conn->query($queryProducts);
           </span>
           <img src="<?php echo 'assets/images/products/' . $row['image'] . ".webp" ?>" alt="<?php echo $row['name'] ?>">
         </div>
-        <div class="product-info">
-          <p>
-            <?php echo $row['name'] ?>
-          </p>
-          <p>
-            <?php echo $row['price'] . "$" ?>
-          </p>
+        <div class="product--inner-container">
+          <div class="product-info">
+            <p>
+              <?php echo $row['name'] ?>
+            </p>
+            <p>
+              <?php echo $row['price'] . "$" ?>
+            </p>
+          </div>
+          <ion-icon name="cart-outline"></ion-icon>
         </div>
       </div>
       <?php
