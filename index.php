@@ -21,7 +21,12 @@ include "navbar.php";
       Products
     </h2>
     <p class="product-paragraph">order it for you or for your belowed ones</p>
-    <?php include "product.php"; ?>
+    <?php
+    include "products.php";
+    include "description.php";
+    include "footer.php";
+    ?>
+
 </main>
 
 <?php

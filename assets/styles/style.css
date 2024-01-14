@@ -162,3 +162,67 @@ nav {
 .product--inner-container ion-icon {
   cursor: pointer;
 }
+
+/* description section */
+.description-section {
+  width: 100%;
+  max-width: 110rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: roboto, sans-serif;
+}
+
+.description-section div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description-section div h2 {
+  font-size: 3.2rem;
+  width: 100%;
+}
+.description-section div h2 p {
+  font-size: 1.6rem;
+  color: #56b280;
+}
+.description-section div ul li {
+  font-size: 1.8rem;
+  margin: 1rem 0rem;
+}
+strong {
+  font-weight: 500;
+}
+
+/* footer */
+footer {
+  background-color: #000;
+  padding: 5rem;
+}
+
+footer div {
+  width: 100%;
+  max-width: 110rem;
+  margin: 0 auto;
+  background-color: black;
+}
+
+footer div hr {
+  background-color: white;
+  height: 2px;
+  width: 100%;
+  opacity: 1;
+}
+footer img {
+  width: 250px;
+  height: 100px;
+}
+footer p {
+  color: white;
+  font-size: 1.35rem;
+  max-width: 200px;
+  width: 100%;
+}
