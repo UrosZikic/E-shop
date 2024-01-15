@@ -19,4 +19,4 @@
   <link rel="stylesheet" href="assets/styles/responsive.css">
 </head>
 
-<body onresize="responsive_head_image()" onload="responsive_head_image()">
+<body>

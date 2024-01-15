@@ -9,7 +9,7 @@
     </button>
 
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php">
       <img src="assets/images/logo.webp" alt="website logo">
     </a>
 
