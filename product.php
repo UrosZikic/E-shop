@@ -21,9 +21,8 @@ $resultProducts = $conn->query($queryProducts);
         <p> &#128666 free shipping</p>
       </div>
       <div class="single-product-right">
-        <h1>
+        <h1 class="product_name">
           <?php echo $row['name'] ?>
-          &#169;
         </h1>
         <div class="product-right-layout">
           <div class="product-right-layout-one">
@@ -61,7 +60,7 @@ $resultProducts = $conn->query($queryProducts);
               <p>Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at
                 checkout.</p>
             </div>
-            <a href="">Add to cart</a>
+            <button class="add_to_cart" onclick="push_to_cart()">Add to cart</button>
 
           </div>
 

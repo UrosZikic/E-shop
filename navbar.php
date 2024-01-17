@@ -30,8 +30,10 @@
 
 
     <div class="d-flex align-items-center gap-4">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-icon name="cart-outline"></ion-icon>
+      <a href="profile.php" aria-label="profile-page">
+        <ion-icon name="person-outline"></ion-icon> </a>
+      <a href="cart.php" aria-label="cart page">
+        <ion-icon name="cart-outline"></ion-icon> </a>
     </div>
 
 
