@@ -31,7 +31,8 @@ if (isset($_COOKIE['js_var_value'])) {
 
   $placeholders = implode(', ', array_fill(0, count($cart_product_name), '?'));
   $orderByClause = 'FIELD(`name`, ' . implode(', ', array_map(function ($item) {
-    return "'" . $item . "'"; }, $cart_product_name)) . ')';
+    return "'" . $item . "'";
+  }, $cart_product_name)) . ')';
   $queryProducts = "SELECT * FROM `products` WHERE `name` IN ($placeholders) ORDER BY $orderByClause";
   $stmt = $conn->prepare($queryProducts);
   $stmt->bind_param(str_repeat('s', count($cart_product_name)), ...$cart_product_name);
@@ -45,6 +46,7 @@ if (isset($_COOKIE['js_var_value'])) {
   // Fetch the results
   ?>
   <div class="cart_titles">
+    <span></span>
     <strong>Product</strong>
     <strong>Price</strong>
     <strong>Quantity</strong>
@@ -55,14 +57,17 @@ if (isset($_COOKIE['js_var_value'])) {
     ?>
     <div class="cart_product_container">
       <div class="cart_name_image_container">
-        <img src="<?php echo "assets/images/products/" . $row['image'] . '.webp' ?>" alt="<?php echo $row['name'] ?>">
-
-        <p class="cart-product-name">
-          <?php
-          echo $row['name'];
-
-          ?>
-        </p>
+        <a href="product.php?product_id=<?php echo $row['id'] ?>" aria-label="productpage link">
+          <img src="<?php echo "assets/images/products/" . $row['image'] . '.webp' ?>" alt="<?php echo $row['name'] ?>">
+        </a>
+        <div class="cart-product">
+          <p class="cart-product-name">
+            <?php
+            echo $row['name'];
+            ?>
+          </p>
+          <button class="remove_product_btn">Remove</button>
+        </div>
       </div>
       <p>$
         <?php echo "<span class='cart-product-price'>" . $row['price'] . "</span>" ?>

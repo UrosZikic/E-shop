@@ -60,7 +60,9 @@ $resultProducts = $conn->query($queryProducts);
               <p>Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at
                 checkout.</p>
             </div>
-            <button class="add_to_cart" onclick="push_to_cart()">Add to cart</button>
+
+            <button class="add_to_cart" onclick="push_to_cart(<?php echo $row['id'] ?>)" <?php echo $row['quantity'] == 0 ? "disabled" : ""; ?>>Add to
+              cart</button>
 
           </div>
 

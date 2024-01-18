@@ -1,6 +1,8 @@
 "use strict";
 const body = document.querySelector("body");
 
+const cart_amount = document.querySelector(".cart-amount");
+
 document.addEventListener("DOMContentLoaded", responsive_head_image);
 window.addEventListener("resize", responsive_head_image);
 
@@ -114,36 +116,54 @@ if (getCookie("productQuantity") || getCookie("productQuantity") === 0) {
 }
 
 // pass info to cart.php
-const prouctName = document.querySelector(".product_name");
-const product_qnt = document.querySelector(".qnt-display");
+const prouctName = document.querySelectorAll(".product_name");
+const product_qnt = document.querySelectorAll(".qnt-display");
 let cart_collection = [];
 window.addEventListener("load", load_cart);
 
 function load_cart() {
+  console.log(cart_collection);
+  console.log(localStorage.getItem("cart_info"));
+  console.log(document.cookie);
   const load_cart_info = localStorage.getItem("cart_info");
   console.log(localStorage.getItem("cart_info"));
+  cart_amount.innerHTML = load_cart_info.length;
+
   if (!load_cart_info) {
     cart_collection = [];
   } else {
-    console.log(cart_collection);
     cart_collection = JSON.parse(load_cart_info);
-    console.log(cart_collection);
+
     let cleanedArray = cart_collection.map(([productName, quantity]) => [
       productName.trim(),
-      quantity.trim(),
+      typeof quantity === "string" ? quantity.trim() : quantity,
     ]);
     document.cookie = "js_var_value = " + cleanedArray;
-    console.log(document.cookie);
+    cart_amount.innerHTML = cleanedArray.length;
   }
+  console.log(cart_collection);
+  console.log(localStorage.getItem("cart_info"));
+  console.log(document.cookie);
 }
 
-function push_to_cart() {
+function push_to_cart(id, qnt_validation) {
   let temporary_cart_info_container = [];
   let is_in_cart = false;
-  temporary_cart_info_container.push(
-    prouctName.textContent.trim(),
-    product_qnt.textContent.trim()
-  );
+  let qnt_determiner;
+  if (qnt_validation) {
+    qnt_determiner = qnt_validation
+      ? 1
+      : product_qnt[id - 1].textContent.trim();
+    temporary_cart_info_container.push(
+      prouctName[id - 1].textContent.trim(),
+      qnt_determiner
+    );
+  } else {
+    temporary_cart_info_container.push(
+      prouctName[0].textContent.trim(),
+      product_qnt[0].textContent.trim()
+    );
+  }
   for (let i = 0; i < cart_collection.length; i++) {
     if (cart_collection[i].includes(temporary_cart_info_container[0])) {
       is_in_cart = true;
@@ -160,12 +180,11 @@ function push_to_cart() {
   }
   let cleanedArray = cart_collection.map(([productName, quantity]) => [
     productName.trim(),
-    quantity.trim(),
+    typeof quantity === "string" ? quantity.trim() : quantity,
   ]);
   localStorage.setItem("cart_info", JSON.stringify(cleanedArray));
-  console.log(localStorage.getItem("cart_info"));
-  console.log(cart_collection);
   document.cookie = "js_var_value = " + cleanedArray;
+  cart_amount.innerHTML = cleanedArray.length;
 }
 
 // cart qnt adjustment
@@ -210,3 +229,30 @@ function updateCart() {
   console.log(cart_collection);
   load_cart();
 }
+
+//remove from cart functionality
+document.querySelectorAll(".remove_product_btn").forEach((item, index) => {
+  item.onclick = () => {
+    let current_cart = JSON.parse(localStorage.getItem("cart_info"));
+
+    const current_product_name = document
+      .querySelectorAll(".cart-product-name")
+      [index].innerHTML.trim();
+
+    cart_collection = current_cart.filter(
+      (item) => item[0] !== current_product_name
+    );
+    const removed_product = document.querySelectorAll(
+      ".cart_product_container"
+    )[index];
+
+    localStorage.setItem("cart_info", JSON.stringify(cart_collection));
+    document.cookie = "js_var_value = " + cart_collection;
+    load_cart();
+    removed_product.style.display = "none";
+    cart_amount.innerHTML = cart_collection.length;
+    console.log(cart_collection);
+    console.log(localStorage.getItem("cart_info"));
+    console.log(document.cookie);
+  };
+});

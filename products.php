@@ -13,25 +13,29 @@ $resultProducts = $conn->query($queryProducts);
 
           <span style="color:<?php echo $row['quantity'] > 0 ? "green" : "red"; ?>">
             <?php
-            echo $row['quantity'] > 0 ? "in stock" : "out of stock";
+            $is_in_stock = $row['quantity'] > 0 ? "in stock" : "out of stock";
+            echo $is_in_stock;
             ?>
           </span>
+
           <a href="product.php?product_id=<?php echo $row['id'] ?>" aria-label="productpage link">
             <img src="<?php echo 'assets/images/products/' . $row['image'] . ".webp" ?>" alt="<?php echo $row['name'] ?>">
           </a>
         </div>
         <div class="product--inner-container">
           <div class="product-info">
-            <p>
+            <p class="product_name">
               <?php echo $row['name'] ?>
             </p>
             <p>
               <?php echo $row['price'] . "$" ?>
             </p>
           </div>
-          <a href="#" aria-label="product add button">
+          <button onclick="push_to_cart(<?php echo $row['id'] ?>, 1)"
+            class="<?php echo $row['quantity'] > 0 ? "" : 'disabled' ?> add_to_cart_alt">
             <ion-icon name="cart-outline"></ion-icon>
-          </a>
+          </button>
+
         </div>
       </div>
       <?php
