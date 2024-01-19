@@ -61,7 +61,7 @@ $resultProducts = $conn->query($queryProducts);
                 checkout.</p>
             </div>
 
-            <button class="add_to_cart" onclick="push_to_cart(<?php echo $row['id'] ?>)" <?php echo $row['quantity'] == 0 ? "disabled" : ""; ?>>Add to
+            <button class="add_to_cart" onclick="push_to_cart(<?php echo $row['id'] ?>)" <?php echo $row['quantity'] == 0 ? "disabled" : ""; ?> style="<?php echo $row['quantity'] == 0 ? "background-color: gray" : ""; ?>">Add to
               cart</button>
 
           </div>

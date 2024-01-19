@@ -122,11 +122,7 @@ let cart_collection = [];
 window.addEventListener("load", load_cart);
 
 function load_cart() {
-  console.log(cart_collection);
-  console.log(localStorage.getItem("cart_info"));
-  console.log(document.cookie);
   const load_cart_info = localStorage.getItem("cart_info");
-  console.log(localStorage.getItem("cart_info"));
   cart_amount.innerHTML = load_cart_info.length;
 
   if (!load_cart_info) {
@@ -141,15 +137,21 @@ function load_cart() {
     document.cookie = "js_var_value = " + cleanedArray;
     cart_amount.innerHTML = cleanedArray.length;
   }
-  console.log(cart_collection);
-  console.log(localStorage.getItem("cart_info"));
-  console.log(document.cookie);
 }
 
-function push_to_cart(id, qnt_validation) {
+function push_to_cart(id, qnt_validation, transition_animation) {
   let temporary_cart_info_container = [];
   let is_in_cart = false;
   let qnt_determiner;
+
+  if (transition_animation == true) {
+    const push_success = document.querySelectorAll(".success-mark")[id - 1];
+    push_success.classList.add("regain_opacity");
+    setTimeout(() => {
+      push_success.classList.remove("regain_opacity");
+    }, 1000);
+  }
+
   if (qnt_validation) {
     qnt_determiner = qnt_validation
       ? 1
@@ -197,28 +199,60 @@ const cartProductTotalPrice = document.querySelectorAll(
 );
 cartIncrement.forEach((incrementor, index) => {
   incrementor.onclick = () => {
-    cartDisplay[index].innerHTML = parseInt(cartDisplay[index].innerHTML) + 1;
-    cartProductTotalPrice[index].innerHTML =
-      parseFloat(cartProductPrice[index].innerHTML) *
-      parseInt(cartDisplay[index].innerHTML);
+    const productName = document
+      .querySelectorAll(".cart-product-name")
+      [index].innerHTML.trim();
+    const displayIndex = cart_collection.findIndex(
+      (item) => item[0] === productName
+    );
+
+    if (cartDisplay[displayIndex].innerHTML < 20) {
+      cartDisplay[displayIndex].innerHTML =
+        parseInt(cartDisplay[displayIndex].innerHTML) + 1;
+    }
+
+    cartProductTotalPrice[displayIndex].innerHTML =
+      parseFloat(cartProductPrice[displayIndex].innerHTML) *
+      parseInt(cartDisplay[displayIndex].innerHTML);
+
     updateCart();
   };
 });
+
 cartDecrement.forEach((decrementor, index) => {
   decrementor.onclick = () => {
-    if (parseInt(cartDisplay[index].innerHTML) > 1)
-      cartDisplay[index].innerHTML = parseInt(cartDisplay[index].innerHTML) - 1;
-    cartProductTotalPrice[index].innerHTML =
-      parseFloat(cartProductPrice[index].innerHTML) *
-      parseInt(cartDisplay[index].innerHTML);
+    const productName = document
+      .querySelectorAll(".cart-product-name")
+      [index].innerHTML.trim();
+    const displayIndex = cart_collection.findIndex(
+      (item) => item[0] === productName
+    );
+
+    if (parseInt(cartDisplay[displayIndex].innerHTML) > 1) {
+      cartDisplay[displayIndex].innerHTML =
+        parseInt(cartDisplay[displayIndex].innerHTML) - 1;
+    }
+
+    cartProductTotalPrice[displayIndex].innerHTML =
+      parseFloat(cartProductPrice[displayIndex].innerHTML) *
+      parseInt(cartDisplay[displayIndex].innerHTML);
+
     updateCart();
   };
 });
 
 function updateCart() {
-  cartDisplay.forEach((qnt, index) => {
-    cart_collection[index][1] = qnt.innerHTML;
+  cart_collection.forEach(([productName, quantity], index) => {
+    const displayIndex = Array.from(
+      document.querySelectorAll(".cart-product-name")
+    ).findIndex((item) => item.innerHTML.trim() === productName);
+
+    if (displayIndex !== -1) {
+      const qnt = cartDisplay[displayIndex].innerHTML.trim();
+      cart_collection[index][1] = qnt.trim();
+    }
   });
+
   let cleanedArray = cart_collection.map(([productName, quantity]) => [
     productName.trim(),
     quantity.trim(),
@@ -226,8 +260,8 @@ function updateCart() {
 
   localStorage.setItem("cart_info", JSON.stringify(cleanedArray));
   document.cookie = "js_var_value = " + cleanedArray;
-  console.log(cart_collection);
   load_cart();
+  get_total_price();
 }
 
 //remove from cart functionality
@@ -249,10 +283,31 @@ document.querySelectorAll(".remove_product_btn").forEach((item, index) => {
     localStorage.setItem("cart_info", JSON.stringify(cart_collection));
     document.cookie = "js_var_value = " + cart_collection;
     load_cart();
-    removed_product.style.display = "none";
+    // removed_product.style.display = "none";
+    document.querySelector(".cart_container").removeChild(removed_product);
     cart_amount.innerHTML = cart_collection.length;
-    console.log(cart_collection);
-    console.log(localStorage.getItem("cart_info"));
-    console.log(document.cookie);
   };
 });
+
+// get the total price of all products combined
+
+const total_price_sum = document.querySelector(".total_price_sum")
+  ? document.querySelector(".total_price_sum")
+  : null;
+total_price_sum ? get_total_price() : null;
+
+function get_total_price() {
+  load_cart();
+  let total_price_sum_value = 0;
+  if (document.querySelectorAll("cart_product_container")) {
+    const total_product_price = document.querySelectorAll(
+      ".cart-product-total-price"
+    );
+    total_product_price.forEach((total_price) => {
+      total_price_sum_value += Number(total_price.innerHTML);
+    });
+    total_price_sum.innerHTML = total_price_sum_value.toFixed(2);
+  } else {
+    total_price_sum.innerHTML = 0;
+  }
+}

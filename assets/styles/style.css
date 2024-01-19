@@ -1,8 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-size: roboto, arial, sans-serif;
+  box-sizing: border-box;
 }
 
 a {
@@ -33,8 +33,10 @@ button.disabled ion-icon {
   font-size: 1.4rem;
   width: 20px;
   height: 20px;
-  text-align: center;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 h2 {
   font-size: 3.2rem;
@@ -145,6 +147,18 @@ nav {
   background-color: #f8f9fa;
   display: flex;
   justify-content: center;
+}
+.product-image ion-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #56b280;
+  font-size: 3rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.regain_opacity {
+  opacity: 1 !important;
 }
 .product-image span {
   position: absolute;
@@ -355,7 +369,7 @@ footer p {
   flex-direction: column;
   width: 100%;
   max-width: 150rem;
-  margin: 10rem auto;
+  margin: 15rem auto 5rem auto;
   border-bottom: 2px solid rgb(199, 199, 199);
 }
 .cart_product_container {
@@ -390,4 +404,37 @@ footer p {
   font-size: 1.8rem;
   background-color: transparent;
   margin-top: 1rem;
+}
+.total_price_container {
+  width: 100%;
+  max-width: 150rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: end;
+}
+
+.total_price_container div {
+  display: flex;
+  flex-direction: column;
+}
+
+.total_price_container p {
+  padding: 0rem 5rem;
+}
+.total_price_container div p:nth-child(2) {
+  font-size: 1.6rem;
+}
+.checkout_btn_styles {
+  width: 100%;
+  max-width: 16rem;
+  height: 4rem;
+  font-size: 1.7rem;
+  background-color: #56b280;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 5px;
 }

@@ -18,6 +18,8 @@ $resultProducts = $conn->query($queryProducts);
             ?>
           </span>
 
+          <ion-icon name="checkmark-outline" class="success-mark"></ion-icon>
+
           <a href="product.php?product_id=<?php echo $row['id'] ?>" aria-label="productpage link">
             <img src="<?php echo 'assets/images/products/' . $row['image'] . ".webp" ?>" alt="<?php echo $row['name'] ?>">
           </a>
@@ -31,7 +33,7 @@ $resultProducts = $conn->query($queryProducts);
               <?php echo $row['price'] . "$" ?>
             </p>
           </div>
-          <button onclick="push_to_cart(<?php echo $row['id'] ?>, 1)"
+          <button onclick="push_to_cart(<?php echo $row['id'] ?>, 1, true)"
             class="<?php echo $row['quantity'] > 0 ? "" : 'disabled' ?> add_to_cart_alt">
             <ion-icon name="cart-outline"></ion-icon>
           </button>

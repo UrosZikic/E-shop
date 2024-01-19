@@ -98,6 +98,13 @@ if (isset($_COOKIE['js_var_value'])) {
 
   ?>
 </div>
+<div class="total_price_container">
+  <div>
+    <p>Total Price: $ <span class="total_price_sum"></span></p>
+    <p style="color: gray;">Tax and shipping cost will be calculated later</p>
+  </div>
+  <a href="" class="checkout_btn_styles">Check out</a>
+</div>
 
 
 <?php
