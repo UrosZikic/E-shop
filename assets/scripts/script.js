@@ -286,6 +286,7 @@ document.querySelectorAll(".remove_product_btn").forEach((item, index) => {
     // removed_product.style.display = "none";
     document.querySelector(".cart_container").removeChild(removed_product);
     cart_amount.innerHTML = cart_collection.length;
+    updateCart();
   };
 });
 
@@ -294,12 +295,21 @@ document.querySelectorAll(".remove_product_btn").forEach((item, index) => {
 const total_price_sum = document.querySelector(".total_price_sum")
   ? document.querySelector(".total_price_sum")
   : null;
-total_price_sum ? get_total_price() : null;
+
+!total_price_sum
+  ? null
+  : document.querySelector(".checkout_page")
+  ? null
+  : get_total_price();
+
+// total_price_sum ? get_total_price() : null;
 
 function get_total_price() {
   load_cart();
   let total_price_sum_value = 0;
   if (document.querySelectorAll("cart_product_container")) {
+    document.querySelector(".checkout_btn_styles").classList.remove("disabled");
+
     const total_product_price = document.querySelectorAll(
       ".cart-product-total-price"
     );
@@ -307,7 +317,17 @@ function get_total_price() {
       total_price_sum_value += Number(total_price.innerHTML);
     });
     total_price_sum.innerHTML = total_price_sum_value.toFixed(2);
+    const save_total_price = total_price_sum.innerHTML;
+    document.cookie = "total_price = " + save_total_price;
   } else {
     total_price_sum.innerHTML = 0;
   }
 }
+
+document.querySelector(".checkout_btn_styles").addEventListener("click", () => {
+  if (document.querySelector(".total_price_sum").innerHTML === "0.00") {
+    document.querySelector(".checkout_btn_styles").classList.add("disabled");
+  } else {
+    document.querySelector(".checkout_btn_styles").classList.remove("disabled");
+  }
+});

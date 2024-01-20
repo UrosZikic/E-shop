@@ -2,43 +2,9 @@
 include "head.php";
 include "navbar.php";
 include "connection.php";
+include "cart_collection.php";
 
 
-if (isset($_COOKIE['js_var_value'])) {
-  $cart_collection = $_COOKIE['js_var_value'];
-  // Remove unwanted characters
-
-  $cart_collection = explode(',', $cart_collection);
-
-
-
-
-  $cart_product_name = [];
-  $cart_product_quantity = [];
-
-
-
-
-  for ($i = 0; $i < count($cart_collection); $i++) {
-    if ($i % 2 == 0) {
-      array_push($cart_product_name, $cart_collection[$i]);
-    } else {
-      array_push($cart_product_quantity, $cart_collection[$i]);
-    }
-  }
-  ;
-
-
-  $placeholders = implode(', ', array_fill(0, count($cart_product_name), '?'));
-  $orderByClause = 'FIELD(`name`, ' . implode(', ', array_map(function ($item) {
-    return "'" . $item . "'";
-  }, $cart_product_name)) . ')';
-  $queryProducts = "SELECT * FROM `products` WHERE `name` IN ($placeholders) ORDER BY $orderByClause";
-  $stmt = $conn->prepare($queryProducts);
-  $stmt->bind_param(str_repeat('s', count($cart_product_name)), ...$cart_product_name);
-  $stmt->execute();
-  $result = $stmt->get_result();
-}
 
 ?>
 <div class="cart_container">
@@ -100,10 +66,11 @@ if (isset($_COOKIE['js_var_value'])) {
 </div>
 <div class="total_price_container">
   <div>
-    <p>Total Price: $ <span class="total_price_sum"></span></p>
+    <p>Sub-total Price: $ <span class="total_price_sum"></span></p>
     <p style="color: gray;">Tax and shipping cost will be calculated later</p>
   </div>
-  <a href="" class="checkout_btn_styles">Check out</a>
+  <a href="checkout.php" class="checkout_btn_styles">Check
+    out</a>
 </div>
 
 
