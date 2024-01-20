@@ -265,26 +265,30 @@ function updateCart() {
 }
 
 //remove from cart functionality
-document.querySelectorAll(".remove_product_btn").forEach((item, index) => {
+document.querySelectorAll(".remove_product_btn").forEach((item) => {
   item.onclick = () => {
     let current_cart = JSON.parse(localStorage.getItem("cart_info"));
 
-    const current_product_name = document
-      .querySelectorAll(".cart-product-name")
-      [index].innerHTML.trim();
+    // Find the closest parent container that holds product information
+    const productContainer = item.closest(".cart_product_container");
 
+    // Get the product name from the container
+    const current_product_name = productContainer
+      .querySelector(".cart-product-name")
+      .innerHTML.trim();
+
+    // Filter out the product with the matching name
     cart_collection = current_cart.filter(
       (item) => item[0] !== current_product_name
     );
-    const removed_product = document.querySelectorAll(
-      ".cart_product_container"
-    )[index];
 
+    // Remove the product container from the DOM
+    productContainer.parentNode.removeChild(productContainer);
+
+    // Update storage and reload cart
     localStorage.setItem("cart_info", JSON.stringify(cart_collection));
     document.cookie = "js_var_value = " + cart_collection;
     load_cart();
-    // removed_product.style.display = "none";
-    document.querySelector(".cart_container").removeChild(removed_product);
     cart_amount.innerHTML = cart_collection.length;
     updateCart();
   };
@@ -323,11 +327,3 @@ function get_total_price() {
     total_price_sum.innerHTML = 0;
   }
 }
-
-document.querySelector(".checkout_btn_styles").addEventListener("click", () => {
-  if (document.querySelector(".total_price_sum").innerHTML === "0.00") {
-    document.querySelector(".checkout_btn_styles").classList.add("disabled");
-  } else {
-    document.querySelector(".checkout_btn_styles").classList.remove("disabled");
-  }
-});
