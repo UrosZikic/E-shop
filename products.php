@@ -11,7 +11,7 @@ $resultProducts = $conn->query($queryProducts);
       <div class="product">
         <div class="product-image">
 
-          <span style="color:<?php echo $row['quantity'] > 0 ? "green" : "red"; ?>">
+          <span style="color:<?php echo $row['quantity'] > 0 ? "#224934" : "#7E1B1B"; ?>; font-weight: 500;">
             <?php
             $is_in_stock = $row['quantity'] > 0 ? "in stock" : "out of stock";
             echo $is_in_stock;
@@ -34,7 +34,7 @@ $resultProducts = $conn->query($queryProducts);
             </p>
           </div>
           <button onclick="push_to_cart(<?php echo $row['id'] ?>, 1, true)"
-            class="<?php echo $row['quantity'] > 0 ? "" : 'disabled' ?> add_to_cart_alt">
+            class="<?php echo $row['quantity'] > 0 ? "" : 'disabled' ?> add_to_cart_alt" aria-label="product_page_button">
             <ion-icon name="cart-outline"></ion-icon>
           </button>
 

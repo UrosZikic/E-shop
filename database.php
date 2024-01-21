@@ -9,6 +9,18 @@ $query = "CREATE TABLE IF NOT EXISTS `products`(
   `price` DOUBLE(10, 2) NOT NULL
   )ENGINE=INNODB;";
 
+$query .= "CREATE TABLE IF NOT EXISTS `order`(
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `email` VARCHAR(50) NOT NULL,
+  `name` VARCHAR(20) NOT NULL,
+  `surname` VARCHAR(30) NOT NULL,
+  `address` VARCHAR (200) NOT NULL,
+  `phone_number` VARCHAR(50) NOT NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `postal_code` INT NOT NULL ,
+  `order` VARCHAR(1000) NOT NULL
+)ENGINE=INNODB;";
+
 // EXECUTE QUERIES
 if (
   $conn->multi_query($query)

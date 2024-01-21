@@ -25,7 +25,8 @@ if (isset($_COOKIE['js_var_value'])) {
     }
   }
   ;
-  $validate_existance = $cart_product_name[0] ? true : false;
+
+
 
   $placeholders = implode(', ', array_fill(0, count($cart_product_name), ' ?'));
   $orderByClause = 'FIELD(`name`, ' .

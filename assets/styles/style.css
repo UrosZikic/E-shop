@@ -21,7 +21,7 @@ button.disabled ion-icon {
   border: none;
   background-color: transparent;
 }
-.cart-container {
+.cart_nav_container {
   position: relative;
 }
 .cart-amount {
@@ -29,7 +29,8 @@ button.disabled ion-icon {
   top: -5px;
   right: -10px;
   color: white;
-  background-color: #56b280;
+  /* background-color: #56b280; */
+  background-color: #224934;
   z-index: 10;
   font-size: 1.4rem;
   width: 20px;
@@ -64,7 +65,7 @@ nav {
   padding: 1rem;
 }
 .inner-nav a {
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 .inner-nav ion-icon {
   font-size: 3rem;
@@ -74,6 +75,9 @@ nav {
 }
 .navbar-brand {
   margin: 0 !important;
+}
+.visually_hidden {
+  position: absolute;
 }
 /* header */
 .header_component {
@@ -113,7 +117,8 @@ nav {
 .h_component_inner a {
   border: none;
   text-decoration: none;
-  background-color: #56b280;
+  /* background-color: #56b280; */
+  background-color: #224934;
   color: #fff !important;
   border-radius: 5px;
   padding: 0.5rem 1rem;
@@ -153,7 +158,8 @@ nav {
   position: absolute;
   top: 5px;
   right: 5px;
-  color: #56b280;
+  /* color: #56b280; */
+  background-color: #224934;
   font-size: 3rem;
   opacity: 0;
   transition: opacity 0.5s;
@@ -230,7 +236,8 @@ nav {
 }
 .description-section div h2 p {
   font-size: 1.6rem;
-  color: #56b280;
+  /* color: #56b280; */
+  color: #224934;
 }
 .description-section div ul li {
   font-size: 1.8rem;
@@ -333,7 +340,8 @@ footer p {
 
 .add_to_cart {
   border: none;
-  background-color: #56b280;
+  /* background-color: #56b280; */
+  background-color: #224934;
   color: #fff !important;
   text-decoration: none;
   padding: 1.5rem 0rem;
@@ -358,7 +366,7 @@ footer p {
 }
 .product-information p {
   font-size: 1.6rem;
-  color: gray;
+  color: #424242;
 }
 .product-information p strong {
   font-size: 1.8rem;
@@ -400,7 +408,8 @@ footer p {
 }
 .remove_product_btn {
   border: none;
-  color: #56b280;
+  /* color: #56b280; */
+  color: #224934;
   text-decoration: underline;
   font-size: 1.8rem;
   background-color: transparent;
@@ -430,7 +439,8 @@ footer p {
   max-width: 16rem;
   height: 4rem;
   font-size: 1.7rem;
-  background-color: #56b280;
+  /* background-color: #56b280; */
+  background-color: #224934;
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -443,6 +453,7 @@ footer p {
 /* checkout page */
 .checkout_page {
   width: 100%;
+  background-color: #224934;
 
   margin: 15rem 0 5rem 0;
 
@@ -479,7 +490,8 @@ footer p {
   top: 0;
   right: 13.5%;
   font-size: 1.5rem;
-  background-color: #56b280;
+  /* background-color: #56b280; */
+  background-color: #224934;
   width: 25px;
   height: 25px;
   display: flex;
@@ -494,7 +506,6 @@ footer p {
   max-width: 75rem;
   margin: 10rem auto;
   display: flex;
-
   justify-content: center;
 }
 
@@ -506,14 +517,17 @@ form div:first-child,
 form label {
   font-size: 2.2rem;
   font-weight: 500;
+  color: white;
 }
 form input {
   padding: 1rem 2rem;
   font-size: 2rem;
   width: 100%;
   margin: 0.5rem 0rem;
+  border: none;
+  outline: none;
 }
-form div div {
+.split-inputs {
   display: flex;
   gap: 0.5rem;
 }
