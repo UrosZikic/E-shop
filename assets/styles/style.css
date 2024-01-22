@@ -159,7 +159,7 @@ nav {
   top: 5px;
   right: 5px;
   /* color: #56b280; */
-  background-color: #224934;
+  color: #224934;
   font-size: 3rem;
   opacity: 0;
   transition: opacity 0.5s;
@@ -448,6 +448,7 @@ footer p {
   color: white !important;
   text-decoration: none;
   border-radius: 5px;
+  border: none;
 }
 
 /* checkout page */
@@ -458,7 +459,7 @@ footer p {
   margin: 15rem 0 5rem 0;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   font-family: roboto, Arial, Helvetica, sans-serif !important;
 }
 .checkout_page_product_container {
@@ -508,11 +509,15 @@ footer p {
   display: flex;
   justify-content: center;
 }
+.contact_container {
+  display: flex;
+  flex-direction: column;
+}
 
 form div:first-child,
 #shippment {
   display: flex;
-  flex-direction: column;
+  gap: 0.5rem;
 }
 form label {
   font-size: 2.2rem;
@@ -539,4 +544,18 @@ input[type="submit"] {
   padding: 0rem 5rem;
   display: flex;
   justify-content: space-between;
+}
+/* success message */
+.success_msg {
+  position: fixed;
+  width: 100%;
+  max-width: 50rem;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5rem;
+  text-align: center;
+  background-color: #224934;
+  color: white;
+  z-index: 100;
 }

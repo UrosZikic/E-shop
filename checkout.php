@@ -14,37 +14,26 @@ if (isset($_POST['submit_order'])) {
   $postal_code = trim($_POST['postal_code']);
   $stringify_order = implode(',', $cart_collection);
 
-  echo $email;
-  echo $first_name;
-  echo $second_name;
-  echo $address;
-  echo $phone_number;
-  echo $city;
-  echo $postal_code;
-  echo $stringify_order;
+  $stmt = $conn->prepare("INSERT INTO `order` (`email`, `name`, `surname`, `address`, `phone_number`, `city`, `postal_code`, `order`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("ssssssss", $email, $first_name, $second_name, $address, $phone_number, $city, $postal_code, $stringify_order);
 
-  $query = "INSERT INTO `order` (`email`, `name`, `surname`, `address`, `phone_number`, `city`, `postal_code`, `order`) VALUES 
-  ('" . $email . "', '" . $first_name . "', '" . $second_name . "', '" . $address . "', '" . $phone_number . "', '" . $city . "', '" . $postal_code . "', '" . $stringify_order . "');";
-
-  $order = $conn->query($query);
-
-
-  if ($order) {
-    //uspesno izmenjen student, prebaci ga na index.php
-    header("location: index.php");
+  if ($stmt->execute()) {
+    header("location: index.php?success_msg=" . true);
     exit();
   } else {
-    //doslo je do greske
+    // Handle error
     echo "<p>DOSLO JE DO GRESKE</p>";
   }
+
+  $stmt->close();
 }
 
 
 ?>
 <main class="checkout_page">
   <div class="checkout_page_information">
-    <form action="#" method="post" class="sticky">
-      <div>
+    <form method="post" class="sticky">
+      <div class="contact_container">
         <label for="buyer_contact">Contact</label>
         <input type="email" id="buyer_contact" placeholder="Email" name="email" required>
       </div>
@@ -61,7 +50,7 @@ if (isset($_POST['submit_order'])) {
           <input type="number" placeholder="Postal code" name="postal_code" required>
         </div>
       </div>
-      <input type="submit" placeholder="Submid order" name="submit_order" value="Order">
+      <input type="submit" placeholder="Submid order" name="submit_order" value="Order" id="submit_order_btn">
     </form>
   </div>
   <div class="checkout_page_product_container">

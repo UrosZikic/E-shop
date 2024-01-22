@@ -69,8 +69,8 @@ include "cart_collection.php";
     <p>Sub-total Price: $ <span class="total_price_sum"></span></p>
     <p style="color: gray;">Tax and shipping cost will be calculated later</p>
   </div>
-  <a href="checkout.php" class="checkout_btn_styles">Check
-    out</a>
+  <button href="checkout.php" class="checkout_btn_styles checkout_forward">Check
+    out</button>
 </div>
 
 
