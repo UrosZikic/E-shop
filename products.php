@@ -21,7 +21,8 @@ $resultProducts = $conn->query($queryProducts);
           <ion-icon name="checkmark-outline" class="success-mark"></ion-icon>
 
           <a href="product.php?product_id=<?php echo $row['id'] ?>" aria-label="productpage link">
-            <img src="<?php echo 'assets/images/products/' . $row['image'] . ".webp" ?>" alt="<?php echo $row['name'] ?>">
+            <img src="<?php echo 'assets/images/products/' . $row['image'] . ".webp" ?>" alt="<?php echo $row['name'] ?>"
+              loading="lazy">
           </a>
         </div>
         <div class="product--inner-container">

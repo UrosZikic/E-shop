@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION['title'] = "Product page";
+session_destroy();
 include "head.php";
 include "navbar.php";
 include 'connection.php';

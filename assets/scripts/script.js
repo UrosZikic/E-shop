@@ -334,20 +334,23 @@ if (document.querySelector(".success_msg")) {
     success_msg.style.display = "none";
   }, 2000);
 }
-if (document.querySelector("#submit_order_btn")) {
-  const submit_order_btn = document.querySelector("#submit_order_btn");
-  submit_order_btn.onclick = () => {
+
+if (document.querySelector("#order_form")) {
+  const order_form = document.querySelector("#order_form");
+  order_form.onsubmit = () => {
     localStorage.clear();
-    document.cookie = "js_var_value = ";
-    document.cookie = "total_price = " + 0;
     total_price_sum.innerHTML = 0;
+    document.cookie = "reset_cart =" + true;
   };
 }
 
 if (document.querySelector(".checkout_forward")) {
   const checkout_forward = document.querySelector(".checkout_forward");
   checkout_forward.onclick = () => {
-    if (localStorage.getItem("cart_info").length > 2) {
+    if (
+      localStorage.getItem("cart_info") !== null &&
+      localStorage.getItem("cart_info").length > 2
+    ) {
       window.location.href = "checkout.php";
     } else {
       return null;

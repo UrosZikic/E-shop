@@ -3,15 +3,12 @@ if (isset($_COOKIE['js_var_value'])) {
   $cart_collection = $_COOKIE['js_var_value'];
   // Remove unwanted characters
 
+  echo $cart_collection;
   $cart_collection = explode(',', $cart_collection);
-
-
 
 
   $cart_product_name = [];
   $cart_product_quantity = [];
-
-
 
 
   for ($i = 0; $i < count($cart_collection); $i++) {
@@ -41,4 +38,3 @@ if (isset($_COOKIE['js_var_value'])) {
   $result = $stmt->get_result();
 }
 
-?>

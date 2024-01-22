@@ -9,7 +9,7 @@ $query = "CREATE TABLE IF NOT EXISTS `products`(
   `price` DOUBLE(10, 2) NOT NULL
   )ENGINE=INNODB;";
 
-$query .= "CREATE TABLE IF NOT EXISTS `order`(
+$query .= "CREATE TABLE IF NOT EXISTS `orders`(
   `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   `email` VARCHAR(50) NOT NULL,
   `name` VARCHAR(20) NOT NULL,
@@ -18,7 +18,8 @@ $query .= "CREATE TABLE IF NOT EXISTS `order`(
   `phone_number` VARCHAR(50) NOT NULL,
   `city` VARCHAR(100) NOT NULL,
   `postal_code` INT NOT NULL ,
-  `order` VARCHAR(1000) NOT NULL
+  `ordered` VARCHAR(1000) NOT NULL,
+  `date` VARCHAR(200) NOT NULL
 )ENGINE=INNODB;";
 
 // EXECUTE QUERIES
@@ -29,4 +30,3 @@ if (
 } else {
   header("Location: error.php?m=" . $conn->error);
 }
-?>

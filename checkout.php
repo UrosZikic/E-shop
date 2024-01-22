@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+$_SESSION['title'] = "Checkout page";
+session_destroy();
 include "head.php";
 include "navbar.php";
 include "connection.php";
@@ -12,16 +16,16 @@ if (isset($_POST['submit_order'])) {
   $phone_number = trim($_POST['phone_number']);
   $city = trim($_POST['city']);
   $postal_code = trim($_POST['postal_code']);
-  $stringify_order = implode(',', $cart_collection);
+  $cart_checkout = $_COOKIE['js_var_value'];
+  $date = date('Y-m-d H:i:s');
 
-  $stmt = $conn->prepare("INSERT INTO `order` (`email`, `name`, `surname`, `address`, `phone_number`, `city`, `postal_code`, `order`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("ssssssss", $email, $first_name, $second_name, $address, $phone_number, $city, $postal_code, $stringify_order);
+  $stmt = $conn->prepare("INSERT INTO `orders` (`email`, `name`, `surname`, `address`, `phone_number`, `city`, `postal_code`, `ordered`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssssssss", $email, $first_name, $second_name, $address, $phone_number, $city, $postal_code, $cart_checkout, $date);
 
   if ($stmt->execute()) {
-    header("location: index.php?success_msg=" . true);
+    header("location: index.php?success_msg=" . true . "&reset_cart=" . true);
     exit();
   } else {
-    // Handle error
     echo "<p>DOSLO JE DO GRESKE</p>";
   }
 
@@ -29,10 +33,12 @@ if (isset($_POST['submit_order'])) {
 }
 
 
+
+
 ?>
 <main class="checkout_page">
   <div class="checkout_page_information">
-    <form method="post" class="sticky">
+    <form id="order_form" method="post" class="sticky">
       <div class="contact_container">
         <label for="buyer_contact">Contact</label>
         <input type="email" id="buyer_contact" placeholder="Email" name="email" required>
