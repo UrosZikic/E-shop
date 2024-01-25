@@ -65,7 +65,7 @@ if (document.querySelector(".description-section")) {
       <li><strong>Hyphoallergenic:</strong> 100% natural, human friendly ingredients</li>
 
       <li><strong>Handmade:</strong> All candles are craftly made with love.</li>
-      <li><strong>Long burning:</strong> No more waste. Created for last long.</li>
+      <li><strong>Long burning:</strong> No more waste. Created to last long.</li>
     </ul>
   </div>
 
@@ -291,6 +291,13 @@ document.querySelectorAll(".remove_product_btn").forEach((item) => {
     load_cart();
     cart_amount.innerHTML = cart_collection.length;
     updateCart();
+
+    if (
+      localStorage.getItem("cart_info") === null ||
+      localStorage.getItem("cart_info").length <= 2
+    ) {
+      window.location.href = "index.php";
+    }
   };
 });
 

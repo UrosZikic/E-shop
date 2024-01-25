@@ -14,7 +14,8 @@ include "navbar.php";
         <div>
           <p>🌱</p>
           <h1>The nature candle</h1>
-          <p>All handmade with natural soy wax, Candleleaf is a companion for all your pleasure moments</p>
+          <p>Crafted entirely by skilled hands using natural soy wax, Candleleaf is your perfect companion for moments
+            of pure pleasure. </p>
         </div>
         <a href="#products">Discover out collection</a>
       </div>
@@ -22,7 +23,8 @@ include "navbar.php";
     <h2 class="product-heading">
       Products
     </h2>
-    <p class="product-paragraph">order it for you or for your belowed ones</p>
+    <p class="product-paragraph">
+      Indulge yourself or treat your beloved ones to the exquisite experience of Candleleaf. </p>
 
     <?php
     if (isset($_GET['success_msg'])) {

@@ -1,8 +1,13 @@
+<script>
+  if (localStorage.getItem('cart_info') === null || localStorage.getItem('cart_info').length <= 2) {
+    window.location.href = "index.php";
+  } 
+</script>
 <?php
-session_start();
+// ob_start();
 
+session_start();
 $_SESSION['title'] = "Checkout page";
-session_destroy();
 include "head.php";
 include "navbar.php";
 include "connection.php";
@@ -21,7 +26,6 @@ if (isset($_POST['submit_order'])) {
 
   $stmt = $conn->prepare("INSERT INTO `orders` (`email`, `name`, `surname`, `address`, `phone_number`, `city`, `postal_code`, `ordered`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
   $stmt->bind_param("sssssssss", $email, $first_name, $second_name, $address, $phone_number, $city, $postal_code, $cart_checkout, $date);
-
   if ($stmt->execute()) {
     header("location: index.php?success_msg=" . true . "&reset_cart=" . true);
     exit();

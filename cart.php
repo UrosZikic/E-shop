@@ -1,3 +1,8 @@
+<script>
+  if (localStorage.getItem('cart_info').length <= 2) {
+    window.location.href = "index.php";
+  }
+</script>
 <?php
 session_start();
 $_SESSION['title'] = "Cart page";
@@ -17,11 +22,7 @@ include "cart_collection.php";
     // Fetch the results
     ?>
     <div class="cart_titles">
-      <span></span>
-      <strong>Product</strong>
-      <strong>Price</strong>
-      <strong>Quantity</strong>
-      <strong>Total</strong>
+      <strong>Products</strong>
     </div>
     <?php
     while ($row = $result->fetch_assoc()) {
@@ -40,29 +41,32 @@ include "cart_collection.php";
             <button class="remove_product_btn">Remove</button>
           </div>
         </div>
-        <p>$
-          <?php echo "<span class='cart-product-price'>" . $row['price'] . "</span>" ?>
-        </p>
-        <div class="cart-qnt-adjuster">
-          <button class="cart-qnt-increment">+</button>
-          <p class="cart-qnt-display">
-            <?php
-            if (in_array($row['name'], $cart_product_name)) {
-              $key = array_search($row['name'], $cart_product_name);
-              echo $cart_product_quantity[$key];
-            }
-            ?>
+        <div class="cart-product-numbers">
+          <p>$
+            <?php echo "<span class='cart-product-price'>" . $row['price'] . "</span>" ?>
           </p>
-          <button class="cart-qnt-decrement">-</button>
+          <div class=" cart-qnt-adjuster">
+            <button class="cart-qnt-decrement">-</button>
+            <p class="cart-qnt-display">
+              <?php
+              if (in_array($row['name'], $cart_product_name)) {
+                $key = array_search($row['name'], $cart_product_name);
+                echo $cart_product_quantity[$key];
+              }
+              ?>
+            </p>
+            <button class="cart-qnt-increment">+</button>
+
+          </div>
+          <p>
+            $
+            <span class="cart-product-total-price">
+              <?php
+              echo ($row['price']) * $cart_product_quantity[$key];
+              ?>
+            </span>
+          </p>
         </div>
-        <p>
-          $
-          <span class="cart-product-total-price">
-            <?php
-            echo ($row['price']) * $cart_product_quantity[$key];
-            ?>
-          </span>
-        </p>
       </div>
       <?php
     }

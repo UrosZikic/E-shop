@@ -37,11 +37,13 @@ $resultProducts = $conn->query($queryProducts);
               <p>Quantity</p>
 
               <div class="qnt-adjuster">
-                <button class="qnt-increment">+</button>
+                <button class="qnt-decrement">-</button>
+
                 <p class="qnt-display">
                   <?php echo $row['quantity'] ? 1 : 0 ?>
                 </p>
-                <button class="qnt-decrement">-</button>
+                <button class="qnt-increment">+</button>
+
               </div>
             </div>
           </div>
@@ -49,18 +51,19 @@ $resultProducts = $conn->query($queryProducts);
           <div class="product-right-layout-two">
             <div>
 
-              <div>
+              <div class="radio-container">
                 <input type="radio" name="purchase-type" id="one-time-purchase">
                 <label for="one-time-purchase">One time purchase</label>
               </div>
             </div>
             <!-- y -->
             <div>
-              <div>
+              <div class="radio-container">
                 <input type="radio" name="purchase-type" id="subscribe">
                 <label for="subscribe">Subscribe and receive a new delivery every week</label>
               </div>
-              <p>Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at
+              <p class="subscribe-label">Subscribe now and get the 10% of discount on every recurring order. The discount
+                will be applied at
                 checkout.</p>
             </div>
 
