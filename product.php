@@ -13,6 +13,15 @@ $queryProducts = 'SELECT * FROM `products` WHERE `id`=' . $productId;
 $resultProducts = $conn->query($queryProducts);
 ?>
 <main class="product-container" id="product-container">
+  <div class="product_success_overlay product_success_overlay_none">
+    <div class="product_success product_success_initial">
+      <p>Product added to cart successfully</p>
+      <div>
+        <button class="proceed_to_cart">Proceed to cart</button>
+        <button class="keep_shopping">Keep shopping</button>
+      </div>
+    </div>
+  </div>
   <?php
   if ($resultProducts->num_rows != 0) {
     while ($row = $resultProducts->fetch_assoc()) {
@@ -67,7 +76,10 @@ $resultProducts = $conn->query($queryProducts);
                 checkout.</p>
             </div>
 
-            <button class="add_to_cart" onclick="push_to_cart(<?php echo $row['id'] ?>)" <?php echo $row['quantity'] == 0 ? "disabled" : ""; ?> style="<?php echo $row['quantity'] == 0 ? "background-color: gray" : ""; ?>">Add to
+            <button class="add_to_cart"
+              onclick="push_to_cart(<?php echo $row['id'] ?>, false, false, <?php echo $row['quantity'] ?>, '<?php echo $row['name'] ?>')"
+              <?php echo $row['quantity'] == 0 ? "disabled" : ""; ?>
+              style="<?php echo $row['quantity'] == 0 ? "background-color: gray" : ""; ?>">Add to
               cart</button>
 
           </div>

@@ -51,7 +51,8 @@ include "cart_collection.php";
               <?php
               if (in_array($row['name'], $cart_product_name)) {
                 $key = array_search($row['name'], $cart_product_name);
-                echo $cart_product_quantity[$key];
+                echo $cart_product_quantity[$key] <= $row['quantity'] ? intval($cart_product_quantity[$key]) : 20;
+
               }
               ?>
             </p>

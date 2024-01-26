@@ -135,3 +135,8 @@
     padding: 0;
   }
 }
+@media only screen and (max-width: 400px) {
+  .product_success div {
+    flex-direction: column;
+  }
+}

@@ -575,7 +575,8 @@ input[type="submit"] {
   font-size: 1.6rem;
 }
 /* success message */
-.success_msg {
+.success_msg,
+.product_success {
   position: fixed;
   width: 100%;
   max-width: 50rem;
@@ -587,6 +588,26 @@ input[type="submit"] {
   background-color: #224934;
   color: white;
   z-index: 100;
+}
+.product_success {
+  z-index: 999;
+  transition: all 0.5s;
+}
+.product_success div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.product_success button {
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.8rem;
+  background-color: white;
+  color: #224934;
+}
+.product_success_initial {
+  transform: translate(-50%, -200%);
 }
 
 /* contact */
@@ -669,4 +690,17 @@ input[type="submit"] {
   display: flex;
   width: 100%;
   gap: 1rem;
+}
+
+.product_success_overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 998;
+}
+.product_success_overlay_none {
+  display: none;
 }
