@@ -704,3 +704,8 @@ input[type="submit"] {
 .product_success_overlay_none {
   display: none;
 }
+#order_form {
+  height: 35rem;
+  position: sticky;
+  top: 15rem;
+}

@@ -63,7 +63,7 @@ include "cart_collection.php";
             $
             <span class="cart-product-total-price">
               <?php
-              echo ($row['price']) * $cart_product_quantity[$key];
+              echo (float) $row['price'] * (int) $cart_product_quantity[$key];
               ?>
             </span>
           </p>
