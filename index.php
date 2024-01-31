@@ -54,7 +54,7 @@ include "footer.php";
       document.cookie = "js_var_value = " + [];
     })();
   } else {
-    console.log(reset_cart_now);
+    // console.log(reset_cart_now);
   }
 </script>
 <script>

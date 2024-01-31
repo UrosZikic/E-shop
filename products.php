@@ -34,11 +34,10 @@ $resultProducts = $conn->query($queryProducts);
               <?php echo $row['price'] . "$" ?>
             </p>
           </div>
-          <button onclick="push_to_cart(<?php echo $row['id'] ?>, 1, true)"
+          <button onclick="push_to_cart(<?php echo $row['id'] ?>, 1, true, 20, '<?php echo $row['name'] ?>')"
             class="<?php echo $row['quantity'] > 0 ? "" : 'disabled' ?> add_to_cart_alt" aria-label="product_page_button">
             <ion-icon name="cart-outline"></ion-icon>
           </button>
-
         </div>
       </div>
       <?php
