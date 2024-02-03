@@ -4,9 +4,8 @@
   }
 </script>
 <?php
-session_start();
-$_SESSION['title'] = "Cart page";
-session_destroy();
+$title = "Cart";
+
 
 include "head.php";
 include "navbar.php";

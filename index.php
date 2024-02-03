@@ -1,7 +1,5 @@
 <?php
-session_start();
-$_SESSION['title'] = "Home page";
-session_destroy();
+$title = "Home";
 include "head.php";
 include "navbar.php";
 
@@ -64,6 +62,10 @@ include "footer.php";
     window.history.replaceState({}, document.title, window.location.pathname);
   }
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script src="assets/scripts/carousel.js"></script>
+
 <?php
 include "foot.php";
 ?>

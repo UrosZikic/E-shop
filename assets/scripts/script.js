@@ -142,8 +142,10 @@ function push_to_cart(id, qnt_validation, transition_animation, total_qnt) {
   let temporary_cart_info_container = [];
   let is_in_cart = false;
   let qnt_determiner;
+  console.log(id);
   if (transition_animation == true) {
-    const push_success = document.querySelectorAll(".success-mark")[id - 1];
+    const push_success = document.querySelectorAll(".success-mark")[id + 3];
+    console.log(push_success);
     push_success.classList.add("regain_opacity");
     setTimeout(() => {
       push_success.classList.remove("regain_opacity");
@@ -153,11 +155,11 @@ function push_to_cart(id, qnt_validation, transition_animation, total_qnt) {
   if (qnt_validation) {
     qnt_determiner = qnt_validation
       ? 1
-      : product_qnt[id - 1].textContent.trim();
+      : product_qnt[id + 3].textContent.trim();
 
     qnt_determiner > 20 ? 20 : qnt_determiner < 1 ? 1 : qnt_determiner;
     temporary_cart_info_container.push(
-      prouctName[id - 1].textContent.trim(),
+      prouctName[id + 3].textContent.trim(),
       qnt_determiner
     );
   } else {

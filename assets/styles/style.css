@@ -160,12 +160,32 @@ nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  padding: 1rem;
+  padding: 0 0.5rem;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+}
+.slick-dots {
+  display: none !important;
+}
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 100;
+  transform: translateY(-50%);
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  border: none;
+  background-color: transparent;
+}
+.slick-next {
+  right: 0;
 }
 .product {
   display: flex;
   flex-direction: column;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+  padding: 0 0.5rem;
 }
 
 .product-image {

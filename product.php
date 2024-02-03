@@ -1,7 +1,7 @@
 <?php
-session_start();
-$_SESSION['title'] = "Product page";
-session_destroy();
+// session_start();
+// $_SESSION['title'] = "Product page";
+// session_destroy();
 include "head.php";
 include "navbar.php";
 include 'connection.php';
@@ -25,7 +25,7 @@ $resultProducts = $conn->query($queryProducts);
   <?php
   if ($resultProducts->num_rows != 0) {
     while ($row = $resultProducts->fetch_assoc()) {
-      setcookie("productQuantity", $row['quantity'], time() + 3600, "/");
+      // setcookie("productQuantity", $row['quantity'], time() + 3600, "/");
       ?>
       <div class="single-product-left">
         <img src="<?php echo "assets/images/products/" . $row['image'] . '.webp' ?>" alt="<?php echo $row['name'] ?>" />

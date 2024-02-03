@@ -21,13 +21,10 @@
   <link rel="stylesheet" href="assets/styles/responsive.css">
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <link rel="icon" type="image/x-icon" href="assets/images/logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
   <title>
     <?php
-    if (isset($_SESSION['title'])) {
-      echo $_SESSION['title'];
-    } else {
-      echo "Home page";
-    }
+    echo $title;
     ?>
   </title>
 </head>

@@ -6,8 +6,8 @@
 <?php
 // ob_start();
 
-session_start();
-$_SESSION['title'] = "Checkout page";
+$title = "Checkout";
+
 include "head.php";
 include "navbar.php";
 include "connection.php";
