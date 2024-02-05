@@ -29,7 +29,8 @@ include "cart_collection.php";
       <div class="cart_product_container">
         <div class="cart_name_image_container">
           <a href="product.php?product_id=<?php echo $row['id'] ?>" aria-label="productpage link">
-            <img src="<?php echo "assets/images/products/" . $row['image'] . '.webp' ?>" alt="<?php echo $row['name'] ?>">
+            <img src="<?php echo "assets/images/products/" . $row['image'] . '.webp' ?>" alt="<?php echo $row['name'] ?> "
+              id='product_img'>
           </a>
           <div class="cart-product">
             <p class="cart-product-name">

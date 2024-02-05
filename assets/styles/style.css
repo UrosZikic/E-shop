@@ -441,13 +441,14 @@ footer p {
 .cart_product_container:nth-child(2) {
   border-top: 2px solid rgb(199, 199, 199);
 }
-.cart_product_container img {
+#product_img {
   width: 200px;
-  height: 100%;
+  height: auto;
 }
 .cart_titles {
   font-size: 1.8rem;
 }
+
 .cart_name_image_container {
   display: flex;
   align-items: center;
