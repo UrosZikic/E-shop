@@ -347,7 +347,7 @@ document.querySelectorAll(".remove_product_btn").forEach((item) => {
     document.cookie = "js_var_value = " + cart_collection;
     load_cart();
     cart_amount.innerHTML = cart_collection.length;
-    updateCart();
+    // updateCart();
 
     if (
       localStorage.getItem("cart_info") === null ||
