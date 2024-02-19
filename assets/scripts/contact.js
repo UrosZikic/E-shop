@@ -162,6 +162,7 @@ function open_modal_form() {
   }
 }
 
+
 //closing function
 document.addEventListener("click", function (event) {
   const formContainer = document.querySelector(".form-container");
@@ -173,6 +174,7 @@ document.addEventListener("click", function (event) {
     ) {
       formContainer.classList.add("disappear");
       document.querySelector("body").classList.remove("no-scroll");
+      document.querySelector(".movie-browser").disabled = false;
       document.querySelector(".form-notification").innerHTML = "";
       document.querySelector("#subject").value = "";
       document.querySelector("#from_name").value = "";

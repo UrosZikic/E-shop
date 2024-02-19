@@ -3,7 +3,7 @@ if (isset($_COOKIE['js_var_value'])) {
   $cart_collection = $_COOKIE['js_var_value'];
   // Remove unwanted characters
 
-  echo $cart_collection;
+
   $cart_collection = explode(',', $cart_collection);
 
 
@@ -30,12 +30,15 @@ if (isset($_COOKIE['js_var_value'])) {
     implode(', ', array_map(function ($item) {
       return "'" . $item . "'";
     }, $cart_product_name)) . ' )';
-  //specials 
-  $queryProducts = "SELECT * FROM `products` WHERE `name` IN ($placeholders) ORDER BY $orderByClause";
-  $stmt = $conn->
-    prepare($queryProducts);
-  $stmt->bind_param(str_repeat('s', count($cart_product_name)), ...$cart_product_name);
-  $stmt->execute();
-  $result = $stmt->get_result();
+
+  // regulars
+
+
+  $queryProducts_r = "SELECT * FROM `products_regular` WHERE `name` IN ($placeholders) ORDER BY $orderByClause";
+  $stmt_r = $conn->prepare($queryProducts_r);
+  $stmt_r->bind_param(str_repeat('s', count($cart_product_name)), ...$cart_product_name);
+  $stmt_r->execute();
+  $result_r = $stmt_r->get_result();
+
 }
 

@@ -22,13 +22,16 @@
         <li class="nav-item link-margin">
           <a class="nav-link" href="#description_s">About</a>
         </li>
+        <li class="nav-item link-margin">
+          <a class="nav-link" href="store.php?i=12&m=1&d=0">Store</a>
+        </li>
       </ul>
     </div>
 
 
     <div class="d-flex align-items-center gap-4">
-      <a href="profile.php" aria-label="profile-page">
-        <ion-icon name="person-outline"></ion-icon> </a>
+      <!--<a href="profile.php" aria-label="profile-page">-->
+      <!--  <ion-icon name="person-outline"></ion-icon> </a>-->
       <a href="cart.php" aria-label="cart" name="cart" class="cart_nav_container">
         <div class="cart-amount"></div>
         <ion-icon name="cart-outline"></ion-icon>

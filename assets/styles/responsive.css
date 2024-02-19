@@ -35,6 +35,9 @@
   .responsive-styles-nav {
     display: none;
   }
+  .navbar-nav {
+    gap: 2rem;
+  }
 }
 .responsive-styles-nav {
   position: absolute;

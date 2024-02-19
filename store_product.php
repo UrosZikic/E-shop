@@ -1,6 +1,7 @@
 <?php
-ob_start();
-$title = "Product";
+// session_start();
+// $_SESSION['title'] = "Product page";
+// session_destroy();
 include "head.php";
 include "navbar.php";
 include 'connection.php';
@@ -8,7 +9,7 @@ include 'connection.php';
 
 $productId = $_GET['product_id'];
 
-$queryProducts = 'SELECT * FROM `products` WHERE `id`=' . $productId;
+$queryProducts = 'SELECT * FROM `products_regular` WHERE `id`=' . $productId;
 $resultProducts = $conn->query($queryProducts);
 ?>
 <main class="product-container" id="product-container">
@@ -24,7 +25,7 @@ $resultProducts = $conn->query($queryProducts);
   <?php
   if ($resultProducts->num_rows != 0) {
     while ($row = $resultProducts->fetch_assoc()) {
-      setcookie("productQuantity", $row['quantity'], time() + 3600, "/");
+      // setcookie("productQuantity", $row['quantity'], time() + 3600, "/");
       ?>
       <div class="single-product-left">
         <img src="<?php echo "assets/images/products/" . $row['image'] . '.webp' ?>" alt="<?php echo $row['name'] ?>" />

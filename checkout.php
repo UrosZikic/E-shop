@@ -1,10 +1,5 @@
-<script>
-  if (localStorage.getItem('cart_info') === null || localStorage.getItem('cart_info').length <= 2) {
-    window.location.href = "index.php";
-  } 
-</script>
 <?php
-// ob_start();
+ob_start();
 
 $title = "Checkout";
 
@@ -12,6 +7,7 @@ include "head.php";
 include "navbar.php";
 include "connection.php";
 include "cart_collection.php";
+include "cart_collection_regular.php";
 
 if (isset($_POST['submit_order'])) {
   $email = trim($_POST['email']);
@@ -26,6 +22,7 @@ if (isset($_POST['submit_order'])) {
 
   $stmt = $conn->prepare("INSERT INTO `orders` (`email`, `name`, `surname`, `address`, `phone_number`, `city`, `postal_code`, `ordered`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
   $stmt->bind_param("sssssssss", $email, $first_name, $second_name, $address, $phone_number, $city, $postal_code, $cart_checkout, $date);
+
   if ($stmt->execute()) {
     header("location: index.php?success_msg=" . true . "&reset_cart=" . true);
     exit();
@@ -35,11 +32,12 @@ if (isset($_POST['submit_order'])) {
 
   $stmt->close();
 }
-
-
-
-
 ?>
+<script>
+  if (localStorage.getItem('cart_info').length <= 2) {
+    window.location.href = "index.php";
+  }
+</script>
 <main class="checkout_page">
   <div class="checkout_page_information">
     <form id="order_form" method="post" class="sticky">
@@ -78,6 +76,7 @@ if (isset($_POST['submit_order'])) {
                 echo $cart_product_quantity[$key];
               }
               ?>
+
             </div>
           </div>
           <div class="checkout_page_product_right">
@@ -87,6 +86,37 @@ if (isset($_POST['submit_order'])) {
             <p> $
               <?php
               echo ($row['price']) * $cart_product_quantity[$key];
+              ?>
+            </p>
+          </div>
+        </div>
+      <?php }
+      ; ?>
+      <!-- xxxxx -->
+      <?php
+      while ($row_r = $result_r->fetch_assoc()) {
+        ?>
+        <div class="checkout_page_product">
+          <div class="checkout_page_product_left">
+            <img src="<?php echo "assets/images/products/" . $row_r['image'] . '.webp' ?>"
+              alt="<?php echo $row_r['name'] ?>">
+            <div class="checkout_page_product_qnt">
+              <?php
+              if (in_array($row_r['name'], $cart_product_name)) {
+                $key = array_search($row_r['name'], $cart_product_name);
+                echo $cart_product_quantity[$key];
+              }
+              ?>
+
+            </div>
+          </div>
+          <div class="checkout_page_product_right">
+            <p>
+              <?php echo $row_r['name'] ?>
+            </p>
+            <p> $
+              <?php
+              echo ($row_r['price']) * $cart_product_quantity[$key];
               ?>
             </p>
           </div>
@@ -136,4 +166,5 @@ if (isset($_POST['submit_order'])) {
 <?php
 include "footer.php";
 include "foot.php";
+
 ?>

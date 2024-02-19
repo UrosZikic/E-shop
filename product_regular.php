@@ -8,7 +8,7 @@ include 'connection.php';
 
 $productId = $_GET['product_id'];
 
-$queryProducts = 'SELECT * FROM `products` WHERE `id`=' . $productId;
+$queryProducts = 'SELECT * FROM `products_regular` WHERE `id`=' . $productId;
 $resultProducts = $conn->query($queryProducts);
 ?>
 <main class="product-container" id="product-container">
